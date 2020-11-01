@@ -22,7 +22,7 @@
             </v-col>
             <v-col cols="12" md="4">
              
-<v-btn class="mx-2" fab dark small color="cyan" @click="AgregarProducto(); ClearData()">
+<v-btn class="mt-2"  fab dark small color="cyan" @click="AgregarProducto(); ClearData()">
     
             <v-icon dark>
               mdi-plus

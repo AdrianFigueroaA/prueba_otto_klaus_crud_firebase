@@ -24,12 +24,12 @@ export default {
     MostrarAdd(state) {
       state.add = !state.add;
     },
-  //   deleteData(state,payload) {
-  //    let elementoAEliminar = state.Productos.find(x => x.id == payload)
-  //    let indexOfElement = state.Productos.indexOf(elementoAEliminar)
-  //    state.Productos.splice(indexOfElement,1)
+    deleteData(state,payload) {
+     let elementoAEliminar = state.Productos.find(x => x.id == payload)
+     let indexOfElement = state.Productos.indexOf(elementoAEliminar)
+     state.Productos.splice(indexOfElement,1)
   
-  //  },
+   },
    
   },
   actions: {
@@ -87,13 +87,14 @@ export default {
         .collection("productos")
         .doc(id)
         .delete();
+        commit("deleteData",id);
       }
       catch(error){
         console.log("Hay un error en la eliminacion del juguete:", error);
       }
-      }
+      },
 
-        // commit("deleteData", id);
+       
     }
     
   

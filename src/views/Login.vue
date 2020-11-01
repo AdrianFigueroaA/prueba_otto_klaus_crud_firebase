@@ -13,6 +13,10 @@
       >
         ingresar
       </v-btn>
+
+      <v-btn @click="logInGoogle" dark depressed color="blue accent-1">
+      Login con Gmail
+    </v-btn>
     </form>
     <div>
       <h1>user:revanskyw@gmail.com</h1>
@@ -42,6 +46,27 @@ export default {
           (error) => console.error(error)
         );
     },
+
+     logInGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          console.log(result);
+          this.$router.replace("home");
+          let user = {
+            name: result.user.displayName,
+            photoURL: result.user.providerData[0].photoURL,
+            email: result.user.email,
+          };
+          this.createdUser(user);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 
+    
   },
 };
 </script>
