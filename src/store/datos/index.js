@@ -5,13 +5,7 @@ export default {
   state: {
     Productos: [],
     add: false,
-    edit: false,
-    editProducto: {
-      // nombre: "",
-      // codigo: "",
-      // precio: "",
-      // stock: ""
-    },
+    
   },
   getters: {
     datos(state) {
@@ -29,10 +23,7 @@ export default {
     MostrarAdd(state) {
       state.add = !state.add;
     },
-    showEditProducto(state, payload) {
-      const finder = state.Productos.find((el) => el.id === payload);
-      state.editProducto = finder
-    }
+    
   },
   actions: {
     async getData({ commit }) {
@@ -77,6 +68,18 @@ export default {
 
       // Agregar a Store
       commit("AddData", juguete);
+
+
+      
+    },
+
+    borrarJuguete({ commit },id) {
+      console.log("borrarJuguete",id)
+      firebase
+        .firestore()
+        .collection("productos")
+        .doc(id)
+        .delete();
     },
   },
 };

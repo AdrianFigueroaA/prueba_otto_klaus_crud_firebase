@@ -1,15 +1,7 @@
 <template>
   <div class="home">
     <v-container>
-      <v-btn
-      class="ma-2"
-      :loading="loading"
-      :disabled="loading"
-      color="secondary"
-      @click="logout"
-    >
-      Cerrar Session
-    </v-btn>
+ 
       <TablaDatos />
       <v-btn @click="showAdd" depressed>
         <span v-if="!add">Agregar Producto</span> <span v-if="add">Quitar Formulario</span>
@@ -23,29 +15,24 @@
 <script>
 import TablaDatos from "@/components/TablaDatos.vue";
 import AgregarProductos from "@/components/AgregarProductos.vue";
-import EditarProductos from "@/components/EditarProductos.vue";
 import { mapMutations, mapState } from "vuex";
+import firebase from 'firebase'
 export default {
   name: "Home",
   components: {
     TablaDatos,
     AgregarProductos,
-    EditarProductos
+   
   },
   computed: {
-    ...mapState("Datos", ["add", "edit"]),
+    ...mapState("Datos", ["add"]),
   },
   methods: {
     ...mapMutations("Datos", ["MostrarAdd"]),
     showAdd() {
       this.MostrarAdd();
     },
-    logout() {
-      firebase
-        .auth()
-        .singOut()
-        .then(() => this.$router.replace('login'));
-    },
+    
   }
 };
 </script>

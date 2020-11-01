@@ -6,8 +6,6 @@
       <input v-model="contrasena" type="password" placeholder="Contraseña" />
 <v-btn
       class="ma-2"
-      :loading="loading"
-      :disabled="loading"
       color="secondary"
       @click="loader = 'loading'"
       type="submit" value="ingresar"
@@ -18,13 +16,16 @@
 
     
     </form>
- <h1>user:revanskyw@gmail.com</h1>
+    <div>
+<h1>user:revanskyw@gmail.com</h1>
     <h1>pass:12345678</h1>
 
     <pre>
 
       {{$data}}
     </pre>
+    </div>
+ 
   </div>
 </template>
 

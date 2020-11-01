@@ -21,9 +21,14 @@
               <v-text-field v-model="juguete.precio" label="Precio"></v-text-field>
             </v-col>
             <v-col cols="12" md="4">
-              <v-btn @click="AgregarProducto(); ClearData()" depressed>
-                Agregar Producto
-              </v-btn>
+             
+<v-btn class="mx-2" fab dark small color="cyan" @click="AgregarProducto(); ClearData()">
+    
+            <v-icon dark>
+              mdi-plus
+            </v-icon>
+          </v-btn>
+
             </v-col>
           </v-row>
         </v-container>
@@ -53,7 +58,7 @@ export default {
       this.juguete.nombre = ""
       this.juguete.codigo = ""
       this.juguete.precio = ""
-      this.juguete.precio = ""
+      this.juguete.stock = ""
     }
   }
 };

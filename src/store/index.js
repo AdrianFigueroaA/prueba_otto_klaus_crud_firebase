@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
-
 import Datos from "./datos";
 
 Vue.use(Vuex)

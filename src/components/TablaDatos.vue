@@ -1,4 +1,5 @@
 <template>
+
   <v-simple-table>
     <template v-slot:default>
       <thead>
@@ -19,35 +20,68 @@
       </thead>
 
       <tbody>
-        <tr v-for="item in Productos" :key="item.nombre" @click="editarJuguete(item.id)">
+        <tr
+          v-for="item in Productos"
+          :key="item.nombre"
+         
+        >
           <td>{{ item.nombre }}</td>
           <td>{{ item.codigo }}</td>
           <td>{{ item.stock }}</td>
           <td>{{ item.precio }}</td>
+
+        
+          <v-btn
+            class="mx-2"
+            fab
+            small
+            color="error"
+            @click="borrar(item.id)"
+          >
+            <v-icon dark>
+              mdi-minus
+            </v-icon>
+          </v-btn>
+
+          <v-btn class="mx-2" fab dark small color="cyan">
+            <v-icon dark>
+              mdi-pencil
+            </v-icon>
+          </v-btn>
         </tr>
       </tbody>
-
     </template>
   </v-simple-table>
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 export default {
   name: "TablaDatos",
+ 
   data() {
     return {
-      
+      juguetes: {
+        data: {
+          codigo: "",
+          nombre: "",
+          stock: "",
+          precio: "",
+        },
+      },
     };
   },
   computed: {
     ...mapState("Datos", ["Productos"]),
   },
   methods: {
-    ...mapMutations("Datos", ["showEditProducto"]),
-    editarJuguete(juguete) {
-      this.showEditProducto(juguete)
-    }
+...mapActions("Datos", ["borrarJuguete"]),
+
+ borrar(id) {
+      this.borrarJuguete(id);
+      
+    },
+
   },
 };
 </script>

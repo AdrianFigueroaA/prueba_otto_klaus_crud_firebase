@@ -27,7 +27,7 @@
             </v-col>
             <v-col cols="12" md="4">
               
-              <h1>El producto es: {{ editProducto.nombre }}</h1>
+             
             </v-col>
           </v-row>
         </v-container>
