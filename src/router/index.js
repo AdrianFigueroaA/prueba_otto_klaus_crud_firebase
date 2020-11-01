@@ -30,12 +30,11 @@ const routes = [
     },
   ];
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
-});
-
+  const router = new VueRouter({
+    mode: "history",
+    base: process.env.BASE_URL,
+    routes,
+  });
 router.beforeEach((to, from, next) => {
   let usuario = firebase.auth().currentUser;
   let autorizacion = to.matched.some((record) => record.meta.autentificado);

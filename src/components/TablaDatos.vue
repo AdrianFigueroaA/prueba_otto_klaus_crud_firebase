@@ -79,7 +79,6 @@ export default {
 
  borrar(id) {
       this.borrarJuguete(id);
-      
     },
 
   },

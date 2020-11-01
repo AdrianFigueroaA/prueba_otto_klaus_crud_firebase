@@ -4,8 +4,7 @@ export default {
   namespaced: true,
   state: {
     Productos: [],
-    add: false,
-    
+    add: false
   },
   getters: {
     datos(state) {
@@ -18,12 +17,20 @@ export default {
     },
     AddData(state, payload) {
       state.Productos.push(payload);
-      console.log(payload);
+      
+
+      
     },
     MostrarAdd(state) {
       state.add = !state.add;
     },
-    
+  //   deleteData(state,payload) {
+  //    let elementoAEliminar = state.Productos.find(x => x.id == payload)
+  //    let indexOfElement = state.Productos.indexOf(elementoAEliminar)
+  //    state.Productos.splice(indexOfElement,1)
+  
+  //  },
+   
   },
   actions: {
     async getData({ commit }) {
@@ -65,21 +72,29 @@ export default {
       } catch (error) {
         console.log("Hay un error en la carga del juguete:", error);
       }
+      
 
       // Agregar a Store
       commit("AddData", juguete);
-
-
       
     },
 
-    borrarJuguete({ commit },id) {
-      console.log("borrarJuguete",id)
-      firebase
+    async borrarJuguete({ commit },id) {
+      console.log("borrarJuguete", id);
+      try {
+        await firebase
         .firestore()
         .collection("productos")
         .doc(id)
         .delete();
-    },
-  },
+      }
+      catch(error){
+        console.log("Hay un error en la eliminacion del juguete:", error);
+      }
+      }
+
+        // commit("deleteData", id);
+    }
+    
+  
 };

@@ -1,41 +1,34 @@
 <template>
-  <div>
-    <form  @submit.prevent="login"  class="formulario">
+  <div class="login">
+    <form @submit.prevent="login" class="formulario">
       <h2>Login</h2>
       <input v-model="usuario" type="text" placeholder="Usuario" />
       <input v-model="contrasena" type="password" placeholder="Contraseña" />
-<v-btn
-      class="ma-2"
-      color="secondary"
-      @click="loader = 'loading'"
-      type="submit" value="ingresar"
-    >
-      ingresar
-    </v-btn>
-
-
-    
+      <v-btn
+        class="ma-2"
+        color="secondary"
+        @click="loader = 'loading'"
+        type="submit"
+        value="ingresar"
+      >
+        ingresar
+      </v-btn>
     </form>
     <div>
-<h1>user:revanskyw@gmail.com</h1>
-    <h1>pass:12345678</h1>
-
-    <pre>
-
-      {{$data}}
-    </pre>
+      <h1>user:revanskyw@gmail.com</h1>
+      <h1>pass:12345678</h1>
     </div>
- 
   </div>
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
 export default {
+  name: "Login",
   data() {
     return {
       usuario: "",
-      contrasena: ""
+      contrasena: "",
     };
   },
 
@@ -44,8 +37,10 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.usuario, this.contrasena)
-        .then((user) => this.$router.replace('home'),(error) => console.error(error));
-        
+        .then(
+          (user) => this.$router.replace("home"),
+          (error) => console.error(error)
+        );
     },
   },
 };

@@ -1,23 +1,7 @@
 <template>
   <v-app>
- <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-
-      <v-spacer></v-spacer>
-      
-     <v-btn
-      class="align-content-end"
-      color="secondary"
-      @click="logout"
-    >
-      Cerrar Session
-    </v-btn>
-      
-    </v-app-bar>
-
+    <h1>Inventario Otto Klaus</h1>
+ 
     <v-main>
       <router-view />
     </v-main>
@@ -28,20 +12,28 @@
 
 import { mapActions } from "vuex";
 import firebase from 'firebase'
+
 export default {
   name: 'App',
 
-
-
-  // data: () => ({
-  //   //
-  // }),
   created () {
     this.getData();
   },
+
+  
   methods: {
     ...mapActions("Datos", ["getData"])
   },
 
 };
 </script>
+
+<style lang="scss">
+h1{
+
+  text-align: center;
+}
+
+
+
+</style>
