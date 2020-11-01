@@ -54,4 +54,14 @@ export default {
   flex-direction: column;
   padding: 5px;
 }
+
+.login{
+
+  background: orange;
+}
+
+#app{
+
+   background: orange;
+}
 </style>

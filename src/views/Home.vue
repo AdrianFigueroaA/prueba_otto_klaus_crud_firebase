@@ -2,10 +2,11 @@
   <div class="home">
     <v-container>
       <v-app-bar app color="primary" dark>
+        <h1>Inventario Otto Klaus</h1>
         <v-spacer></v-spacer>
 
-        <v-btn class="align-content-end" color="secondary" @click="logout">
-          Cerrar Session
+        <v-btn class="align-content-end" color="error" @click="logout">
+          Salir
         </v-btn>
       </v-app-bar>
 
