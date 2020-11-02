@@ -13,7 +13,6 @@ export default {
   },
   mutations: {
     setData(state, payload) {
-      console.log("payload", state.Productos, payload);
       state.Productos = payload;
     },
     AddData(state, payload) {
@@ -22,12 +21,6 @@ export default {
     MostrarAdd(state) {
       state.add = !state.add;
     },
-    //   deleteData(state,payload) {
-    //    let elementoAEliminar = state.Productos.find(x => x.id == payload)
-    //    let indexOfElement = state.Productos.indexOf(elementoAEliminar)
-    //    state.Productos.splice(indexOfElement,1)
-
-    //  },
   },
   actions: {
     getData({ commit }) {
@@ -35,8 +28,6 @@ export default {
         .firestore()
         .collection("productos")
         .onSnapshot((snapshot) => {
-          console.log(snapshot);
-
           let listadoProductos = [];
           snapshot.forEach((p) => {
             listadoProductos.push({
@@ -64,12 +55,11 @@ export default {
           .collection("productos")
           .add(juguete);
       } catch (error) {
-        console.log("Hay un error en la carga del juguete:", error);
+        console.error("Hay un error en la carga del juguete:", error);
       }
     },
 
     async borrarJuguete({ commit }, id) {
-      console.log("borrarJuguete", id);
       try {
         await firebase
           .firestore()
@@ -78,7 +68,19 @@ export default {
           .delete();
         // commit("deleteData",id);
       } catch (error) {
-        console.log("Hay un error en la eliminacion del juguete:", error);
+        console.error("Hay un error en la eliminacion del juguete:", error);
+      }
+    },
+
+    async editToy({ commit }, actualizar) {
+      try {
+        await firebase
+          .firestore()
+          .collection("listado")
+          .doc(actualizacion.id)
+          .update(actualizacion.data);
+      } catch (error) {
+        console.error("hay un error en la edicion del juguete:", error);
       }
     },
   },

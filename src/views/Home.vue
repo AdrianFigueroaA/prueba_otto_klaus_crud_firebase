@@ -30,15 +30,20 @@ export default {
   components: {
     TablaDatos,
     AgregarProductos,
+    
   },
   computed: {
     ...mapState("Datos", ["add"]),
   },
   methods: {
+  
     ...mapMutations("Datos", ["MostrarAdd"]),
+
     showAdd() {
       this.MostrarAdd();
     },
+
+   
     logout() {
       firebase
         .auth()
@@ -50,8 +55,8 @@ export default {
           console.error("Sign Out Error", e);
         });
     },
-  },
-};
+}
+}
 </script>
 
 <style lang="scss">

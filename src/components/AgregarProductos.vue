@@ -6,29 +6,48 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="4">
-              <v-text-field v-model="juguete.nombre" label="Nombre"></v-text-field>
+              <v-text-field
+                v-model="juguete.nombre"
+                label="Nombre"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="4">
-              <v-text-field v-model="juguete.codigo" label="Código"></v-text-field>
+              <v-text-field
+                v-model="juguete.codigo"
+                label="Código"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="4">
-              <v-text-field v-model="juguete.stock" label="Stock"></v-text-field>
+              <v-text-field
+                v-model="juguete.stock"
+                label="Stock"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="4">
-              <v-text-field v-model="juguete.precio" label="Precio"></v-text-field>
+              <v-text-field
+                v-model="juguete.precio"
+                label="Precio"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" md="4">
-             
-<v-btn class="mt-2"  fab dark small color="cyan" @click="AgregarProducto(); ClearData()">
-    
-            <v-icon dark>
-              mdi-plus
-            </v-icon>
-          </v-btn>
-
+              <v-btn
+                class="mt-2"
+                fab
+                dark
+                small
+                color="cyan"
+                @click="
+                  AgregarProducto();
+                  ClearData();
+                "
+              >
+                <v-icon dark>
+                  mdi-plus
+                </v-icon>
+              </v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -47,7 +66,7 @@ export default {
       codigo: "",
       stock: "",
       precio: "",
-    }
+    },
   }),
   methods: {
     ...mapActions("Datos", ["addData"]),
@@ -55,11 +74,11 @@ export default {
       this.addData(this.juguete);
     },
     ClearData() {
-      this.juguete.nombre = ""
-      this.juguete.codigo = ""
-      this.juguete.precio = ""
-      this.juguete.stock = ""
-    }
-  }
+      this.juguete.nombre = "";
+      this.juguete.codigo = "";
+      this.juguete.precio = "";
+      this.juguete.stock = "";
+    },
+  },
 };
 </script>

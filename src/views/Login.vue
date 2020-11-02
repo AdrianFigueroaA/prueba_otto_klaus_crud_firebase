@@ -15,13 +15,9 @@
       </v-btn>
 
       <v-btn @click="logInGoogle" dark depressed color="blue accent-1">
-      Login con Gmail
-    </v-btn>
+        Login con Gmail
+      </v-btn>
     </form>
-    <div>
-      <h1>user:revanskyw@gmail.com</h1>
-      <h1>pass:12345678</h1>
-    </div>
   </div>
 </template>
 
@@ -47,26 +43,24 @@ export default {
         );
     },
 
-     logInGoogle() {
+    logInGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
-          console.log(result);
           this.$router.replace("home");
-          let user = {
-            name: result.user.displayName,
-            photoURL: result.user.providerData[0].photoURL,
-            email: result.user.email,
-          };
-          this.createdUser(user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 
-    
+        //   let user = {
+        //     name: result.user.displayName,
+        //     photoURL: result.user.providerData[0].photoURL,
+        //     email: result.user.email,
+        //   };
+        //   this.createdUser(user);
+         })
+        // .catch((error) => {
+        //   console.log(error);
+        // });
+    },
   },
 };
 </script>
@@ -80,13 +74,11 @@ export default {
   padding: 5px;
 }
 
-.login{
-
+.login {
   background: orange;
 }
 
-#app{
-
-   background: orange;
+#app {
+  background: orange;
 }
 </style>
