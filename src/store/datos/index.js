@@ -72,13 +72,14 @@ export default {
       }
     },
 
-    async editToy({ commit }, actualizar) {
+    async editToy({ commit },juguetes ) {
+      console.log(juguetes)
       try {
         await firebase
           .firestore()
-          .collection("listado")
-          .doc(actualizacion.id)
-          .update(actualizacion.data);
+          .collection("productos")
+          .doc(juguetes.id)
+          .update(juguetes.data);
       } catch (error) {
         console.error("hay un error en la edicion del juguete:", error);
       }
