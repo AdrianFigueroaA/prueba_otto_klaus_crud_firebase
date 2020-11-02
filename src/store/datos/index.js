@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: {
     Productos: [],
-    add: false
+    add: false,
   },
   getters: {
     datos(state) {
@@ -13,7 +13,7 @@ export default {
   },
   mutations: {
     setData(state, payload) {
-      console.log("payload",state.Productos,payload)
+      console.log("payload", state.Productos, payload);
       state.Productos = payload;
     },
     AddData(state, payload) {
@@ -22,17 +22,15 @@ export default {
     MostrarAdd(state) {
       state.add = !state.add;
     },
-  //   deleteData(state,payload) {
-  //    let elementoAEliminar = state.Productos.find(x => x.id == payload)
-  //    let indexOfElement = state.Productos.indexOf(elementoAEliminar)
-  //    state.Productos.splice(indexOfElement,1)
-  
-  //  },
-   
+    //   deleteData(state,payload) {
+    //    let elementoAEliminar = state.Productos.find(x => x.id == payload)
+    //    let indexOfElement = state.Productos.indexOf(elementoAEliminar)
+    //    state.Productos.splice(indexOfElement,1)
+
+    //  },
   },
   actions: {
-
-     getData({ commit }) {
+    getData({ commit }) {
       firebase
         .firestore()
         .collection("productos")
@@ -43,28 +41,21 @@ export default {
           snapshot.forEach((p) => {
             listadoProductos.push({
               id: p.id,
-          nombre: p.data().nombre,
-          codigo: p.data().codigo,
-          stock: p.data().stock,
-          precio: p.data().precio,
+              nombre: p.data().nombre,
+              codigo: p.data().codigo,
+              stock: p.data().stock,
+              precio: p.data().precio,
             });
           });
-          commit("setData", listadoProductos)
+          commit("setData", listadoProductos);
         });
-
     },
     async addData({ commit }, payload) {
-      // Payload es el objeto juguete
-      const precio = Number(payload.precio);
-      const stock = Number(payload.stock);
-      const nombre = payload.nombre.toLowerCase();
-      const codigo = payload.codigo.toUpperCase();
-
       const juguete = {
-        precio ,
-        stock,
-        nombre,
-        codigo,
+        precio: Number(payload.precio),
+        stock: Number(payload.stock),
+        nombre: payload.nombre.toLowerCase(),
+        codigo: payload.codigo.toUpperCase(),
       };
 
       try {
@@ -75,28 +66,20 @@ export default {
       } catch (error) {
         console.log("Hay un error en la carga del juguete:", error);
       }
-      
-      commit("AddData", juguete);
-      
     },
 
-    async borrarJuguete({ commit },id) {
+    async borrarJuguete({ commit }, id) {
       console.log("borrarJuguete", id);
       try {
         await firebase
-        .firestore()
-        .collection("productos")
-        .doc(id)
-        .delete();
+          .firestore()
+          .collection("productos")
+          .doc(id)
+          .delete();
         // commit("deleteData",id);
-      }
-      catch(error){
+      } catch (error) {
         console.log("Hay un error en la eliminacion del juguete:", error);
       }
-      },
-
-       
-    }
-    
-  
+    },
+  },
 };
